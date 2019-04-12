@@ -32,20 +32,16 @@ function preload() {
   //   frameWidth: 8,
   //   frameHeight:8 
   // });
-  //Old Player Icon
-  // this.load.spritesheet("player", "./assets/dude.png", {
-  //   frameWidth: 32,
-  //   frameHeight: 48
-  // });
+  
   this.load.spritesheet("player", "./assets/Character Sprites/chicken.png",{
     frameWidth: 48,
     frameHeight: 48
   });
 
-  this.load.spritesheet("player2", "./assets/Character Sprites/chicken.png",{
-    frameWidth: 48,
-    frameHeight: 48
-  });
+  // this.load.spritesheet("player2", "./assets/Character Sprites/chicken.png",{
+  //   frameWidth: 48,
+  //   frameHeight: 48
+  // });
 
 
 }
@@ -79,8 +75,9 @@ function create() {
   platforms.create(2850, 420, "platform");
   
   //Blocks================================================
-  //Block Physics
+  //Static Block Physics
   blocks = this.physics.add.staticGroup();
+
 
   //Obstacle Blocks
   // blocks.create(1000,300, "block").setScale(2);
@@ -98,15 +95,20 @@ function create() {
     blocks.create(2450,280, "block48");
     
 
+  //Moving Blocks
+  //Moving Block Physics
+  // movblocks = this.physics.add.group();
+  // movblocks.create(100,450,"block96");
+
 
   //Player Physics
   //Initial Start position (100,450)
   player = this.physics.add.sprite(100, 450, "player");
-  player2 = this.physics.add.sprite(100, 450, "player2");
+  // player2 = this.physics.add.sprite(100, 450, "player2");
 
 
   player.setBounce(0.1);
-  player2.setBounce(0.9)
+  // player2.setBounce(0.1)
   //Creates Boundaries with world
   // player.setCollideWorldBounds(false);
 
@@ -142,9 +144,12 @@ this.cameras.main.startFollow(player,true)
   //Collider: Establishes physics between objects
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(player, blocks);
-  this.physics.add.collider(player, player2)
-  this.physics.add.collider(blocks, player2)
-  this.physics.add.collider(platforms, player2)
+  // this.physics.add.collider(player, player2)
+  // this.physics.add.collider(blocks, player2)
+  // this.physics.add.collider(platforms, player2)
+
+  // this.physics.add.collider(moveblocks, platforms);
+  // this.physics.add.collider(moveblocks, blocks);
 
   //Creates Controls
   cursors = this.input.keyboard.createCursorKeys();
