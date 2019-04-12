@@ -1,0 +1,7 @@
+body {
+  background-image: url("./Images/Chicken-Wallpapers-HD.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
