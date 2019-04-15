@@ -118,6 +118,7 @@ function create() {
   blocks.create(3992, 424, "block96");
   blocks.create(3992, 328, "block96");
 
+  
   //Finish Line
   this.add.image(4400, 480, "flag");
 
@@ -128,7 +129,7 @@ function create() {
 
   //Player Physics
   //Initial Start position (200,500)
-  player = this.physics.add.sprite(200, 500, "player");
+  player = this.physics.add.sprite(3000, 500, "player");
   // player2 = this.physics.add.sprite(100, 450, "player2");
 
   //Bounce
@@ -197,6 +198,8 @@ function create() {
   //Collider: Establishes physics between objects
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(player, blocks);
+  
+
   // this.physics.add.collider(player, player2)
   // this.physics.add.collider(blocks, player2)
   // this.physics.add.collider(platforms, player2)
@@ -204,15 +207,34 @@ function create() {
   // this.physics.add.collider(moveblocks, platforms);
   // this.physics.add.collider(moveblocks, blocks);
 
+
   //Creates Controls
   cursors = this.input.keyboard.createCursorKeys();
 
   //Stars
   stars = this.physics.add.group({
     key: "collect",
-    repeat: 11,
-    setXY: { x: 12, y: 0, stepX: 70 }
+    // repeat: 11,
+    // setXY: { x: 12, y: 0, stepX: 70 }
   });
+
+  //Star Physics
+  this.physics.add.collider(stars, blocks);
+  this.physics.add.collider(stars, platforms);
+
+  //Star Collectables
+  stars.create(892,0,"collect");
+  stars.create(1300,0,"collect");
+  stars.create(1750,0,"collect");
+  stars.create(1850,0,"collect");
+  stars.create(2350,0,"collect");
+  stars.create(2254,0,"collect");
+  stars.create(2750,0,"collect");
+  stars.create(3168,0,"collect");
+  stars.create(3400,0,"collect");
+  stars.create(3800,0,"collect");
+  stars.create(3992,0,"collect");
+
   //Pick Up Stars
   function collectStar(player, star) {
     star.disableBody(true, true);
@@ -238,7 +260,6 @@ function create() {
   }
 
   //Make sure to put physics below the assets they need to work. In this case Stars.
-  this.physics.add.collider(stars, platforms);
   this.physics.add.overlap(player, stars, collectStar, null, this);
 
   //Score Functionality
@@ -321,6 +342,7 @@ function update() {
   // wolf.anims.play("wolfRight",true);
 
   // }
+console.log(player.x);
 
   player.anims.play("right", true);
 
