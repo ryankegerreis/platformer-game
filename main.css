@@ -1,8 +1,44 @@
-body {
-  background-image: url("./Images/Chicken-Wallpapers-HD.jpg");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+* {
+  font-family: "VT323", monospace;
 }
 
+.pageContent {
+  background-image: url("./Images/bg1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+
+.row {
+  /* min-width: 600px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* width: 100%; */
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+button {
+  margin: 40px;
+  color: black;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+h2 {
+  font-size: 3em;
+}
