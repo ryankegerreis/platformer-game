@@ -17,13 +17,14 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+var flip = gameObject.flipX;
 
 function preload() {
   //Assets
   this.load.image("background", "./assets/forest.png");
   this.load.image("ground", "./assets/ground.png");
   this.load.image("platform", "./assets/floatingground.png");
-  this.load.image("collect", "/assets/star.png");
+  this.load.image("collect", "/Files/assets/star.png");
   this.load.image("bomb", "assets/bomb.png");
   this.load.image("block", "./assets/block.png");
   this.load.image("block48", "./assets/block48.png");
@@ -350,7 +351,7 @@ function update() {
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
 
-    player.anims.play("right", true).flipX;
+    player.anims.play("right", true);
   } else if (cursors.right.isDown) {
     player.setVelocityX(160);
 
