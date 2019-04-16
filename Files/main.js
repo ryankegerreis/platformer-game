@@ -50,7 +50,7 @@ function preload() {
   // });
 }
 //End Preload
-
+ 
 function create() {
   //Start Create
 
@@ -129,7 +129,7 @@ function create() {
 
   //Player Physics
   //Initial Start position (200,500)
-  player = this.physics.add.sprite(3000, 500, "player");
+  player = this.physics.add.sprite(200, 500, "player");
   // player2 = this.physics.add.sprite(100, 450, "player2");
 
   //Bounce
@@ -342,7 +342,7 @@ function update() {
   // wolf.anims.play("wolfRight",true);
 
   // }
-console.log(player.x);
+// console.log(player.x);
 
   player.anims.play("right", true);
 
@@ -350,7 +350,7 @@ console.log(player.x);
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
 
-    player.anims.play("left", true);
+    player.anims.play("right", true).flipX;
   } else if (cursors.right.isDown) {
     player.setVelocityX(160);
 
