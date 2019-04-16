@@ -131,19 +131,21 @@ function create() {
 
   //Player Physics
   //Initial Start position (200,500)
-  player = this.physics.add.sprite(3000, 500, "player");
+  player = this.physics.add.sprite(200, 500, "player");
   // player2 = this.physics.add.sprite(100, 450, "player2");
 
   //Bounce
   player.setBounce(0.1);
   // player2.setBounce(0.1)
   //Creates Boundaries with world
-  player.setCollideWorldBounds(false);
+  player.setCollideWorldBounds(true);
 
   //Cameras
   var camera = this.cameras.main;
   camera.setViewport(0, 0, 800, 950);
+  camera.setBounds(0,0,5000,600);
   this.cameras.main.startFollow(player, true);
+  
   //Background Color
   camera.setBackgroundColor("#301D54");
   // this.camera.fadeIn(duration); 1000;
@@ -216,8 +218,6 @@ function create() {
   //Stars
   stars = this.physics.add.group({
     key: "collect",
-    // repeat: 11,
-    // setXY: { x: 12, y: 0, stepX: 70 }
   });
 
   //Star Physics
@@ -243,7 +243,8 @@ function create() {
 
     score += 10;
     scoreText.setText("Score: " + score).setScrollFactor(0);
-    //Collecting stars releases bombs
+    
+    // Collecting stars releases bombs
     // if (stars.countActive(true) === 0) {
     //   stars.children.iterate(function(child) {
     //     child.enableBody(true, child.x, 0, true, true);
@@ -289,22 +290,27 @@ function create() {
   });
 
   //Enemies (Just a group like stars)
-  enemies = this.physics.add.group();
+  // enemies = this.physics.add.group();
 
-  this.physics.add.collider(enemies, platforms);
+  // this.physics.add.collider(enemies, platforms);
 
-  this.physics.add.collider(player, enemies, death, null, this);
+  // this.physics.add.collider(player, enemies, death, null, this);
 
   //Bomb Function/Death Mechanic
-  function death(player, bomb) {
-    this.physics.pause();
+  // function death(player, bomb) {
+  //   this.physics.pause();
 
-    player.setTint(0xff0000);
+  //   player.setTint(0xff0000);
 
-    player.anims.play("turn");
+  //   player.anims.play("turn");
 
-    gameOver = true;
-  }
+  //   this.add.text(450,100,'Game Over', {
+  //     font:'42px Arial black',
+  //     fill: '#000'
+  //   }).setScrollFactor(0)
+
+  //   gameOver = true;
+  // }
 }
 function endGame(_this) {
   console.log(this);
@@ -343,6 +349,7 @@ function enemyMove(enemy) {}
 // }
 
 function update() {
+
   // blocks.children.entries[0].setVelocityX(-5);
   // player.setVelocityX(160);
   // player2.setVelocityX(100);
