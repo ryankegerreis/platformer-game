@@ -3,7 +3,7 @@
 }
 
 .pageContent {
-  background-image: url("/Files/Images/bg1.jpg");
+  background-image: url("Files/Images/bg1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
