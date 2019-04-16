@@ -1,3 +1,5 @@
+
+
 var config = {
   type: Phaser.AUTO,
   width: 800,
@@ -17,7 +19,6 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-var flip = gameObject.flipX;
 
 function preload() {
   //Assets
@@ -130,7 +131,7 @@ function create() {
 
   //Player Physics
   //Initial Start position (200,500)
-  player = this.physics.add.sprite(200, 500, "player");
+  player = this.physics.add.sprite(3000, 500, "player");
   // player2 = this.physics.add.sprite(100, 450, "player2");
 
   //Bounce
@@ -178,7 +179,7 @@ function create() {
   //Player Controls
   this.anims.create({
     key: "left",
-    frames: this.anims.generateFrameNumbers("player", { start: 14, end: 15 }),
+    frames: this.anims.generateFrameNumbers("player", { start: 13, end:14 }),
     frameRate: 10,
     repeat: -1
   });
@@ -306,8 +307,16 @@ function create() {
   }
 }
 function endGame(_this) {
+  console.log(this);
+    _this.add.text(4250, 300, `Level Complete!`, {
+    fontSize: "38px",
+    fill: "#ffffff"
+  });
+
   _this.physics.pause();
+
   player.anims.play("turn");
+  
 }
 
 function newScene(_this) {
@@ -345,13 +354,12 @@ function update() {
   // }
 // console.log(player.x);
 
-  player.anims.play("right", true);
 
   //Makes Controls Work
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
 
-    player.anims.play("right", true);
+    player.anims.play("left", true);
   } else if (cursors.right.isDown) {
     player.setVelocityX(160);
 
