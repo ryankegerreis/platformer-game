@@ -17,3 +17,5 @@ Chicken Run was created using Phaser 3, a game development framework that levera
 Unsolved Problems
 
 If I were to write another game using the same technologies I would begin with implementing "scenes" in the very beginning. By the time I realized how they worked it was late in development and would have taken forever to reorganize the game to utilize scenes.
+
+

@@ -23,7 +23,7 @@ function preload() {
   this.load.image("background", "./assets/forest.png");
   this.load.image("ground", "./assets/ground.png");
   this.load.image("platform", "./assets/floatingground.png");
-  this.load.image("collect", "/Files/assets/star.png");
+  this.load.image("collect", "/Files/assets/bread.png");
   this.load.image("bomb", "assets/bomb.png");
   this.load.image("block", "./assets/block.png");
   this.load.image("block48", "./assets/block48.png");
@@ -134,7 +134,7 @@ function create() {
   //Background Color
   camera.setBackgroundColor("#301D54");
 
-  //Player Controls
+  //Player Animations
   this.anims.create({
     key: "left",
     frames: this.anims.generateFrameNumbers("player", { start: 13, end:14 }),
@@ -155,27 +155,27 @@ function create() {
     repeat: -1
   });
 
-  //Player 2 Controls
+  //Player2 Animations
+  this.anims.create({
+    key: "left",
+    frames: this.anims.generateFrameNumbers("player", { start: 13, end:14 }),
+    frameRate: 10,
+    repeat: -1
+  });
 
-  // this.anims.create({
-  //   key: "left",
-  //   frames: this.anims.generateFrameNumbers("player2", { start: 16, end:17 }),
-  //   frameRate: 10,
-  //   repeat: -1
-  // });
+  this.anims.create({
+    key: "turn",
+    frames: [{ key: "player", frame: 2 }],
+    frameRate: 20
+  });
 
-  // this.anims.create({
-  //   key: "turn",
-  //   frames: [{ key: "player2", frame: 5 }],
-  //   frameRate: 20
-  // });
+  this.anims.create({
+    key: "right",
+    frames: this.anims.generateFrameNumbers("player", { start: 25, end: 26 }),
+    frameRate: 10,
+    repeat: -1
+  });
 
-  // this.anims.create({
-  //   key: "right",
-  //   frames: this.anims.generateFrameNumbers("player2", { start: 28, end: 29 }),
-  //   frameRate: 10,
-  //   repeat: -1
-  // });
 
   //Collider: Establishes physics between objects
   this.physics.add.collider(player, platforms);
@@ -220,19 +220,34 @@ function create() {
     scoreText.setText("Score: " + score).setScrollFactor(0);
   }
 
+  function collectStar2(player2, star) {
+    star.disableBody(true, true);
+
+    score2 += 10;
+    score2Text.setText("Score: " + score2).setScrollFactor(0);
+  }
+
   //Make sure to put physics below the assets they need to work. In this case Stars.
   this.physics.add.overlap(player, stars, collectStar, null, this);
-  this.physics.add.overlap(player2, stars, collectStar, null, this);
+  this.physics.add.overlap(player2, stars, collectStar2, null, this);
 
   //Score Functionality
   var score = 0;
   var scoreText;
 
-  scoreText = this.add.text(50, 16, "score: 0", {
+  scoreText = this.add.text(50, 16, "Score: 0", {
     fontSize: "32px",
     fill: "#ffffff"
   });
-  // scoreText.fixedToCamera=true;
+
+  var score2 = 0;
+  var score2Text;
+
+  score2Text = this.add.text(600, 16, "Score: 0", {
+    fontSize: "32px",
+    fill: "#ffffff"
+  });
+  
 
   //Other Text
   this.add.text(0, 350, "Press Arrows To Move", {
@@ -288,7 +303,7 @@ function endGame(_this) {
   _this.physics.pause();
 
   player.anims.play("turn");
-  
+  player2.anims.play("turn");
 }
 
 function newScene(_this) {
@@ -299,22 +314,7 @@ function collectStar(player, star) {
   star.disableBody(true, true);
 }
 
-function enemyMove(enemy) {}
-
 // End Create
-
-// function moveBlock(){
-//   //console.log(blocks.children.entries[0].x )
-//   if(blocks.children.entries[0].x > 400){
-//     blocks.children.entries[0].x++
-//   }
-
-//   if(blocks.children.entries[0].x <= 400){
-//     blocks.children.entries[0].x++
-//   }
-// }
-
-
 
 function update() {
 
@@ -368,5 +368,4 @@ function update() {
 
     endGame(this);
   }
-
 }
