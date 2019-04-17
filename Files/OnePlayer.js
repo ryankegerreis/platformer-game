@@ -23,7 +23,7 @@ function preload() {
   this.load.image("background", "./assets/forest.png");
   this.load.image("ground", "./assets/ground.png");
   this.load.image("platform", "./assets/floatingground.png");
-  this.load.image("collect", "./Files/assets/bread.png");
+  this.load.image("collect", "assets/bread.png");
   this.load.image("block96", "./assets/96box.png");
   this.load.image("flag", "./assets/flag.png");
   this.load.spritesheet("player", "./assets/Character Sprites/chicken.png", {
