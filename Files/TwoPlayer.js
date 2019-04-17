@@ -23,10 +23,7 @@ function preload() {
   this.load.image("background", "./assets/forest.png");
   this.load.image("ground", "./assets/ground.png");
   this.load.image("platform", "./assets/floatingground.png");
-  this.load.image("collect", "./Files/assets/bread.png");
-  this.load.image("bomb", "assets/bomb.png");
-  this.load.image("block", "./assets/block.png");
-  this.load.image("block48", "./assets/block48.png");
+  this.load.image("collect", "/Files/assets/bread.png");
   this.load.image("block96", "./assets/96box.png");
   this.load.image("flag", "./assets/flag.png");
   this.load.spritesheet("player", "./assets/Character Sprites/chicken.png", {
@@ -144,38 +141,37 @@ function create() {
 
   this.anims.create({
     key: "turn",
-    frames: [{ key: "player", frame: 2 }],
+    frames: [{ key: "player", frame: 1 }],
     frameRate: 20
   });
 
   this.anims.create({
     key: "right",
-    frames: this.anims.generateFrameNumbers("player", { start: 25, end: 26 }),
+    frames: this.anims.generateFrameNumbers("player", { start: 24, end: 26 }),
     frameRate: 10,
     repeat: -1
   });
 
   //Player2 Animations
   this.anims.create({
-    key: "left",
-    frames: this.anims.generateFrameNumbers("player", { start: 13, end:14 }),
+    key: "left2",
+    frames: this.anims.generateFrameNumbers("player2", { start: 15, end:17 }),
     frameRate: 10,
     repeat: -1
   });
 
   this.anims.create({
-    key: "turn",
-    frames: [{ key: "player", frame: 2 }],
+    key: "turn2",
+    frames: [{ key: "player2", frame: 4 }],
     frameRate: 20
   });
 
   this.anims.create({
-    key: "right",
-    frames: this.anims.generateFrameNumbers("player", { start: 25, end: 26 }),
+    key: "right2",
+    frames: this.anims.generateFrameNumbers("player2", { start: 27, end: 29 }),
     frameRate: 10,
     repeat: -1
   });
-
 
   //Collider: Establishes physics between objects
   this.physics.add.collider(player, platforms);
@@ -183,7 +179,6 @@ function create() {
   this.physics.add.collider(player, player2)
   this.physics.add.collider(blocks, player2)
   this.physics.add.collider(platforms, player2)
-
 
   //Creates Controls
   cursors = this.input.keyboard.createCursorKeys();
@@ -217,17 +212,17 @@ function create() {
     star.disableBody(true, true);
 
     score += 10;
-    scoreText.setText("Score: " + score).setScrollFactor(0);
+    scoreText.setText("P1 Score: " + score).setScrollFactor(0);
   }
 
   function collectStar2(player2, star) {
     star.disableBody(true, true);
 
     score2 += 10;
-    score2Text.setText("Score: " + score2).setScrollFactor(0);
+    score2Text.setText("P2 Score: " + score2).setScrollFactor(0);
   }
 
-  //Make sure to put physics below the assets they need to work. In this case Stars.
+  //Make sure to put physics below the assets they need to work.
   this.physics.add.overlap(player, stars, collectStar, null, this);
   this.physics.add.overlap(player2, stars, collectStar2, null, this);
 
@@ -262,29 +257,6 @@ function create() {
     fontSize: "32px",
     fill: "#ffffff"
   });
-
-  //Enemies (Just a group like stars)
-  // enemies = this.physics.add.group();
-
-  // this.physics.add.collider(enemies, platforms);
-
-  // this.physics.add.collider(player, enemies, death, null, this);
-
-  //Bomb Function/Death Mechanic
-  // function death(player, bomb) {
-  //   this.physics.pause();
-
-  //   player.setTint(0xff0000);
-
-  //   player.anims.play("turn");
-
-  //   this.add.text(450,100,'Game Over', {
-  //     font:'42px Arial black',
-  //     fill: '#000'
-  //   }).setScrollFactor(0)
-
-  //   gameOver = true;
-  // }
 
   leftButton = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
 
@@ -342,15 +314,15 @@ function update() {
   if (leftButton.isDown) {
     player2.setVelocityX(-160);
 
-    player2.anims.play("left", true);
+    player2.anims.play("left2", true);
   } else if (rightButton.isDown) {
     player2.setVelocityX(160);
 
-    player2.anims.play("right", true);
+    player2.anims.play("right2", true);
   } else {
     player2.setVelocityX(0);
 
-    player2.anims.play("turn");
+    player2.anims.play("turn2");
   }
 
   if (upButton.isDown && player2.body.touching.down) {

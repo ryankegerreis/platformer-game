@@ -1,5 +1,3 @@
-
-
 var config = {
   type: Phaser.AUTO,
   width: 800,
@@ -25,31 +23,13 @@ function preload() {
   this.load.image("background", "./assets/forest.png");
   this.load.image("ground", "./assets/ground.png");
   this.load.image("platform", "./assets/floatingground.png");
-  this.load.image("collect", "./Files/assets/star.png");
-  this.load.image("bomb", "assets/bomb.png");
-  this.load.image("block", "./assets/block.png");
-  this.load.image("block48", "./assets/block48.png");
+  this.load.image("collect", "/Files/assets/bread.png");
   this.load.image("block96", "./assets/96box.png");
   this.load.image("flag", "./assets/flag.png");
-  // this.load.spritesheet("collectables", "./assets/rpg_icons_v1.png", {
-  //   frameWidth: 8,
-  //   frameHeight:8
-  // });
-
   this.load.spritesheet("player", "./assets/Character Sprites/chicken.png", {
     frameWidth: 48,
     frameHeight: 48
   });
-
-  // this.load.spritesheet("wolf", "./assets/Character Sprites/wolf.png",{
-  //   frameWidth: 40,
-  //   frameHeight: 40
-  // });
-
-  // this.load.spritesheet("player2", "./assets/Character Sprites/chicken.png",{
-  //   frameWidth: 48,
-  //   frameHeight: 48
-  // });
 }
 //End Preload
  
@@ -124,21 +104,16 @@ function create() {
   //Finish Line
   this.add.image(4400, 480, "flag");
 
-  //Moving Blocks
-  //Moving Block Physics
-  // movblocks = this.physics.add.group();
-  // movblocks.create(100,450,"block96");
-
   //Player Physics
   //Initial Start position (200,500)
   player = this.physics.add.sprite(200, 500, "player");
-  // player2 = this.physics.add.sprite(100, 450, "player2");
+ 
 
   //Bounce
   player.setBounce(0.1);
-  // player2.setBounce(0.1)
+
   //Creates Boundaries with world
-  player.setCollideWorldBounds(true);
+  player.setCollideWorldBounds(false);
 
   //Cameras
   var camera = this.cameras.main;
@@ -148,36 +123,7 @@ function create() {
   
   //Background Color
   camera.setBackgroundColor("#301D54");
-  // this.camera.fadeIn(duration); 1000;
-  //player.body.velocity.x = 0;
-
-  //Enemies
-  // wolf = this.physics.add.sprite(100, 0, "wolf");
-  // this.anims.create({
-  //   key: "wolfIdle",
-  //   frames: this.anims.generateFrameNumbers("wolf", { start: 1, end: 3 }),
-  //   frameRate: 10,
-  //   repeat: -1
-  // });
-
-  // this.anims.create({
-  //   key: "wolfRight",
-  //   frames: this.anims.generateFrameNumbers("wolf", { start: 19, end: 25 }),
-  //   frameRate: 10,
-  //   repeat: -1
-  // });
-
-  // this.anims.create({
-  //   key: "wolfLeft",
-  //   frames: this.anims.generateFrameNumbers("wolf", { start: 5, end: 8 }).flipX,
-  //   frameRate: 10,
-  //   repeat: -1
-  // });
-
-  //Enemy Physics
-  // this.physics.add.collider(wolf, platforms);
-  // this.physics.add.collider(wolf, blocks);
-
+ 
   //Player Controls
   this.anims.create({
     key: "left",
@@ -202,16 +148,7 @@ function create() {
   //Collider: Establishes physics between objects
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(player, blocks);
-  
-
-  // this.physics.add.collider(player, player2)
-  // this.physics.add.collider(blocks, player2)
-  // this.physics.add.collider(platforms, player2)
-
-  // this.physics.add.collider(moveblocks, platforms);
-  // this.physics.add.collider(moveblocks, blocks);
-
-
+ 
   //Creates Controls
   cursors = this.input.keyboard.createCursorKeys();
 
@@ -243,23 +180,6 @@ function create() {
 
     score += 10;
     scoreText.setText("Score: " + score).setScrollFactor(0);
-    
-    // Collecting stars releases bombs
-    // if (stars.countActive(true) === 0) {
-    //   stars.children.iterate(function(child) {
-    //     child.enableBody(true, child.x, 0, true, true);
-    //   });
-
-    //   var x =
-    //     player.x < 400
-    //       ? Phaser.Math.Between(400, 800)
-    //       : Phaser.Math.Between(0, 400);
-
-    //   var bomb = bombs.create(x, 16, "bomb");
-    //   bomb.setBounce(.3);
-    //   bomb.setCollideWorldBounds(true);
-    //   bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-    // }
   }
 
   //Make sure to put physics below the assets they need to work. In this case Stars.
@@ -273,7 +193,6 @@ function create() {
     fontSize: "32px",
     fill: "#ffffff"
   });
-  // scoreText.fixedToCamera=true;
 
   //Other Text
   this.add.text(0, 350, "Press Arrows To Move", {
@@ -288,32 +207,8 @@ function create() {
     fontSize: "32px",
     fill: "#ffffff"
   });
-
-  //Enemies (Just a group like stars)
-  // enemies = this.physics.add.group();
-
-  // this.physics.add.collider(enemies, platforms);
-
-  // this.physics.add.collider(player, enemies, death, null, this);
-
-  //Bomb Function/Death Mechanic
-  // function death(player, bomb) {
-  //   this.physics.pause();
-
-  //   player.setTint(0xff0000);
-
-  //   player.anims.play("turn");
-
-  //   this.add.text(450,100,'Game Over', {
-  //     font:'42px Arial black',
-  //     fill: '#000'
-  //   }).setScrollFactor(0)
-
-  //   gameOver = true;
-  // }
 }
 function endGame(_this) {
-  console.log(this);
     _this.add.text(4250, 300, `Level Complete!`, {
     fontSize: "38px",
     fill: "#ffffff"
@@ -335,32 +230,7 @@ function collectStar(player, star) {
 
 function enemyMove(enemy) {}
 
-// End Create
-
-// function moveBlock(){
-//   //console.log(blocks.children.entries[0].x )
-//   if(blocks.children.entries[0].x > 400){
-//     blocks.children.entries[0].x++
-//   }
-
-//   if(blocks.children.entries[0].x <= 400){
-//     blocks.children.entries[0].x++
-//   }
-// }
-
 function update() {
-
-  // blocks.children.entries[0].setVelocityX(-5);
-  // player.setVelocityX(160);
-  // player2.setVelocityX(100);
-  // wolf.setVelocityX(100);
-
-  // if (wolf.x>0) {
-  // wolf.anims.play("wolfRight",true);
-
-  // }
-// console.log(player.x);
-
 
   //Makes Controls Work
   if (cursors.left.isDown) {
