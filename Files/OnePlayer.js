@@ -193,20 +193,6 @@ function create() {
     fontSize: "32px",
     fill: "#ffffff"
   });
-
-  //Other Text
-  this.add.text(0, 350, "Press Arrows To Move", {
-    fontSize: "32px",
-    fill: "#ffffff"
-  });
-  this.add.text(700, 250, "Press Up To Jump", {
-    fontSize: "32px",
-    fill: "#ffffff"
-  });
-  this.add.text(1650, 100, "And Collect Those Stars!", {
-    fontSize: "32px",
-    fill: "#ffffff"
-  });
 }
 function endGame(_this) {
     _this.add.text(4250, 300, `Level Complete!`, {

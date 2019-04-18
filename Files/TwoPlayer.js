@@ -238,25 +238,11 @@ function create() {
   var score2 = 0;
   var score2Text;
 
-  score2Text = this.add.text(600, 16, "Score: 0", {
+  score2Text = this.add.text(500, 16, "Score: 0", {
     fontSize: "32px",
     fill: "#ffffff"
   });
-  
 
-  //Other Text
-  this.add.text(0, 350, "Press Arrows To Move", {
-    fontSize: "32px",
-    fill: "#ffffff"
-  });
-  this.add.text(700, 250, "Press Up To Jump", {
-    fontSize: "32px",
-    fill: "#ffffff"
-  });
-  this.add.text(1650, 100, "And Collect Those Stars!", {
-    fontSize: "32px",
-    fill: "#ffffff"
-  });
 
   leftButton = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
 
